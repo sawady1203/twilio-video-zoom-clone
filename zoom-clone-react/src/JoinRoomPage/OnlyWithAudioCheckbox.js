@@ -3,7 +3,6 @@ import CheckImg from "../resources/images/check.png";
 
 function OnlyWithAudioCheckbox(props) {
   const { connectOnlyWithAudio, setConnectOnlyWithAudio } = props;
-  console.log("connectOnlyWithAudio", connectOnlyWithAudio);
 
   const handleConnectionTypeChange = () => {
     setConnectOnlyWithAudio(!connectOnlyWithAudio);

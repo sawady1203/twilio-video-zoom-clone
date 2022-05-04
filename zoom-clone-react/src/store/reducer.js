@@ -2,6 +2,7 @@ import Actions from "./actions";
 
 const initalState = {
   identity: "",
+  roomId: null,
   isRoomHost: false,
   connectOnlyWithAudio: false,
 };
@@ -12,6 +13,11 @@ const reducer = (state = initalState, action) => {
       return {
         ...state,
         identity: action.identity,
+      };
+    case Actions.SET_ROOM_ID:
+      return {
+        ...state,
+        roomId: action.roomId,
       };
     case Actions.SET_IS_ROOM_HOST:
       return {

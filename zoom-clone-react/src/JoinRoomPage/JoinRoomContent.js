@@ -38,8 +38,10 @@ function JoinRoomContent(props) {
       setShowLoadingOverlay(true);
       // check if room exists and if yes join
       const roomExists = await checkIfRoomExists(roomIdValue);
+      console.log("roomExists:", roomExists);
       setShowLoadingOverlay(false);
       if (roomExists) {
+        // setRoomIdAction(roomIdValue); // これいらんのかな？
         navigate("/room");
       } else {
         setShowRoomNotFoundMessage(true);

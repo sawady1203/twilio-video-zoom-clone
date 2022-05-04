@@ -3,6 +3,7 @@ const Actions = {
   SET_ROOM_ID: "SET_ROOM_ID",
   SET_IDENTITY: "SET_IDENTITY",
   SET_CONNECT_ONLY_WITH_AUDIO: "SET_CONNECT_ONLY_WITH_AUDIO",
+  SET_TWILIO_ACCESS_TOKEN: "SET_TWILIO_ACCESS_TOKEN",
 };
 
 export const setIdentity = (identity) => {
@@ -30,6 +31,13 @@ export const setConnectOnlyWithAudio = (onlyWithAudio) => {
   return {
     type: Actions.SET_CONNECT_ONLY_WITH_AUDIO,
     connectOnlyWithAudio: onlyWithAudio,
+  };
+};
+
+export const setTwilioAccessToken = (token) => {
+  return {
+    type: Actions.SET_TWILIO_ACCESS_TOKEN,
+    accessToken: token,
   };
 };
 

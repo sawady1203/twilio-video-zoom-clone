@@ -1,6 +1,6 @@
 import axios from "axios";
 import { store } from "../store/store";
-import { setShowOverlay } from "../store/actions";
+import { setMessages, setShowOverlay } from "../store/actions";
 import {
   connect,
   LocalAudioTrack,
@@ -22,6 +22,8 @@ const videoConstraints = {
   },
 };
 
+let dataChannel = null;
+
 export const getTokenFromTwilio = async (setAccessToken, identity) => {
   const randomId = store.getState().roomId; // room名はランダムなもの
   console.log("roomId:", randomId);
@@ -41,7 +43,6 @@ export const getTokenFromTwilio = async (setAccessToken, identity) => {
 
 export const checkIfRoomExists = async (roomId) => {
   const response = await axios.post(URL + `/room-exists?roomId=${roomId}`);
-
   return response.data.roomExists;
 };
 
@@ -59,20 +60,30 @@ export const connectToRoom = async (
       let tracks;
 
       // create data track for messages
+      const dataTrack = new LocalDataTrack();
+      dataChannel = dataTrack;
+
+      // create audio track
       const audioTrack = new LocalAudioTrack(stream.getAudioTracks()[0]);
 
+      // video trackの有無はconstrainsで決める
+      // tracksに各trackをまとめて、roomへ渡す
       let videoTrack;
       if (!onlyWithAudio) {
+        // create video track
         videoTrack = new LocalVideoTrack(stream.getVideoTracks()[0]);
-        tracks = [audioTrack, videoTrack];
+        tracks = [audioTrack, videoTrack, dataTrack];
       } else {
-        tracks = [audioTrack];
+        tracks = [audioTrack, dataTrack];
       }
 
       const room = await connect(accessToken, { name: roomId, tracks });
+
       console.log("successfully connect twilio room");
       console.log("room:", room);
+
       setRoom(room);
+
       store.dispatch(setShowOverlay(false));
     })
     .catch((err) => {
@@ -81,4 +92,32 @@ export const connectToRoom = async (
       );
       console.log(err);
     });
+};
+
+export const sendMessageUsingDataChannel = (
+  content,
+  messageCreatedByMe = false
+) => {
+  const identity = store.getState().identity;
+  const ownMessage = {
+    identity,
+    content,
+    messageCreatedByMe,
+  };
+
+  addMessageToMessenger(ownMessage);
+
+  const messageToSend = {
+    identity,
+    content,
+  };
+
+  const stringfiedMessage = JSON.stringify(messageToSend);
+  dataChannel.send(stringfiedMessage);
+};
+
+export const addMessageToMessenger = (message) => {
+  const messages = [...store.getState().messages];
+  messages.push(message);
+  store.dispatch(setMessages(messages));
 };

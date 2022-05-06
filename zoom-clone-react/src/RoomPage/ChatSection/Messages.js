@@ -1,19 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const dummyMessages = [
-  { identity: "sawada", content: "test test", messageCreateByMe: true },
-  { identity: "sawada", content: "test test", messageCreateByMe: true },
-  { identity: "ohashi", content: "test test" },
-  { identity: "ohashi", content: "test test" },
-  { identity: "nakagawa", content: "test test" },
-];
-
-const Message = ({ author, content, sameAuthor, messageCreateByMe }) => {
-  const alignClass = messageCreateByMe
+const Message = ({ author, content, sameAuthor, messageCreatedByMe }) => {
+  const alignClass = messageCreatedByMe
     ? "message_align_right"
     : "message_align_left";
-  const authorText = messageCreateByMe ? "You" : author;
-  const contentAdditionalStyles = messageCreateByMe
+  const authorText = messageCreatedByMe ? "You" : author;
+  const contentAdditionalStyles = messageCreatedByMe
     ? "message_right_styles"
     : "message_left_styles";
 
@@ -25,18 +18,19 @@ const Message = ({ author, content, sameAuthor, messageCreateByMe }) => {
   );
 };
 
-function Messages() {
+function Messages({ messages }) {
   return (
     <div className="messages_container">
-      {dummyMessages.map((message, index) => {
+      {messages.map((message, index) => {
         const sameAuthor =
-          index > 0 && message.identity === dummyMessages[index - 1].identity;
+          index > 0 && message.identity === messages[index - 1].identity;
         return (
           <Message
             author={message.identity}
             content={message.content}
             sameAuthor={sameAuthor}
-            messageCreateByMe={message.messageCreateByMe}
+            messageCreatedByMe={message.messageCreatedByMe}
+            key={index}
           />
         );
       })}
@@ -44,4 +38,10 @@ function Messages() {
   );
 }
 
-export default Messages;
+const mapStoreStateToProps = (state) => {
+  return {
+    ...state,
+  };
+};
+
+export default connect(mapStoreStateToProps, null)(Messages);

@@ -8,6 +8,7 @@ const initalState = {
   twilioAccessToken: null,
   showOverlay: true,
   participants: [],
+  messages: [],
 };
 
 const reducer = (state = initalState, action) => {
@@ -46,6 +47,11 @@ const reducer = (state = initalState, action) => {
       return {
         ...state,
         participants: action.participants,
+      };
+    case Actions.SET_MESSAGES:
+      return {
+        ...state,
+        messages: action.messages,
       };
     default:
       return state;

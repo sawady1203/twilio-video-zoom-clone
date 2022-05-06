@@ -1,8 +1,9 @@
 exports.handler = async function (context, event, callback) {
   const roomId = event.roomId;
   const response = new Twilio.Response();
+  const HOST = context.HOST;
   const headers = {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": `${HOST}`,
     "Access-Control-Allow-Method": "POST",
     "Access-Control-Allow-Headers": "Content-Type",
     "Content-Type": "application/json",

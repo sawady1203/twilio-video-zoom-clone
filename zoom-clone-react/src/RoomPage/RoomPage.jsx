@@ -6,16 +6,22 @@ import Overlay from "./Overlay";
 import { connect } from "react-redux";
 import { setTwilioAccessToken } from "../store/actions";
 import { getTokenFromTwilio } from "../utils/twilioUtils";
+import { useNavigate } from "react-router-dom";
 
 import "./RoomPage.css";
 
 function RoomPage(props) {
-  const { identity, setTwilioAccessTokenAction, showOverlay } = props;
+  const { identity, roomId, setTwilioAccessTokenAction, showOverlay } = props;
+  let navigate = useNavigate();
 
   // RoomPageに入ったときにはidentityは入力されている状態
   // RoomPageに遷移したタイミングでアクセストークンを取得する
   useEffect(() => {
-    getTokenFromTwilio(setTwilioAccessTokenAction, identity);
+    if (!identity || !roomId) {
+      navigate("/");
+    } else {
+      getTokenFromTwilio(setTwilioAccessTokenAction, identity);
+    }
   }, []);
 
   return (

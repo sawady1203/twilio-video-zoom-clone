@@ -3,6 +3,7 @@ exports.handler = function (context, event, callback) {
   const TWILIO_ACCOUNT_SID = context.TWILIO_ACCOUNT_SID;
   const TWILIO_API_KEY = context.TWILIO_API_KEY;
   const TWILIO_API_SECRET = context.TWILIO_API_SECRET;
+  const HOST = context.HOST;
 
   // jwt claim
   const identity = event.identity;
@@ -26,7 +27,7 @@ exports.handler = function (context, event, callback) {
 
   const response = new Twilio.Response();
   const headers = {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": `${HOST}`,
     "Access-Control-Allow-Method": "POST",
     "Access-Control-Allow-Headers": "Content-Type",
     "Content-Type": "application/json",

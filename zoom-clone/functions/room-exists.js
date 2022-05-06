@@ -26,7 +26,6 @@ exports.handler = async function (context, event, callback) {
       uniqueName: roomId,
     })
     .then((room) => {
-      //   console.log("rooms list:", rooms.length);
       if (room.length >= 1) {
         return response.setBody({
           roomExists: true,

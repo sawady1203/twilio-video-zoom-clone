@@ -1,4 +1,6 @@
 import React from "react";
+import { store } from "../../store/store";
+import { connect } from "react-redux";
 
 function SingleParticipant({ identity, lastItem }) {
   const getParticipantName = (identity) => {
@@ -13,15 +15,9 @@ function SingleParticipant({ identity, lastItem }) {
   );
 }
 
-const participants = [
-  { identity: "sawada" },
-  { identity: "mabuchi" },
-  { identity: "takagi" },
-  { identity: "kuze" },
-  { identity: "ohashi" },
-];
-
-function Participants() {
+function Participants(props) {
+  const { participants } = props;
+  console.log("participants:", participants);
   return (
     <div className="participants_container">
       {participants.map((participant, index) => {
@@ -37,4 +33,10 @@ function Participants() {
   );
 }
 
-export default Participants;
+const mapStoreStateToProps = (state) => {
+  return {
+    ...state,
+  };
+};
+
+export default connect(mapStoreStateToProps, null)(Participants);

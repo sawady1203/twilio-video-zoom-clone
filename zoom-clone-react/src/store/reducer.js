@@ -6,6 +6,8 @@ const initalState = {
   isRoomHost: false,
   connectOnlyWithAudio: false,
   twilioAccessToken: null,
+  showOverlay: true,
+  participants: [],
 };
 
 const reducer = (state = initalState, action) => {
@@ -33,7 +35,17 @@ const reducer = (state = initalState, action) => {
     case Actions.SET_TWILIO_ACCESS_TOKEN:
       return {
         ...state,
-        twilioAccessToken: action.accessToken,
+        twilioAccessToken: action.token,
+      };
+    case Actions.SET_SHOW_OVERLAY:
+      return {
+        ...state,
+        showOverlay: action.showOverlay,
+      };
+    case Actions.SET_PARTICIPANTS:
+      return {
+        ...state,
+        participants: action.participants,
       };
     default:
       return state;

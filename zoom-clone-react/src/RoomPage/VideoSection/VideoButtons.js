@@ -10,7 +10,7 @@ function VideoButtons(props) {
 
   return (
     <div className="video_buttons_container">
-      <MicButton />
+      <MicButton room={room} />
       {!connectOnlyVideoWithAudio && <CameraButton room={room} />}
       <LeaveRoomButton room={room} />
       <SwitchToScreenSharingButton room={room} />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CameraButtonImg from "../../resources/images/camera.svg";
 import CameraButtonImgOff from "../../resources/images/cameraOff.svg";
 
-function CameraButton() {
+function CameraButton({ room }) {
   const [isLocalVideoTrackDisabled, setIsLocalVideoTrackDisabled] =
     useState(false);
 
@@ -11,9 +11,17 @@ function CameraButton() {
     setIsLocalVideoTrackDisabled(!isLocalVideoTrackDisabled);
   };
 
-  const startVideo = () => {};
+  const startVideo = () => {
+    room.localParticipant.videoTracks.forEach((localVideoTrackPuliction) => {
+      localVideoTrackPuliction.track.enable();
+    });
+  };
 
-  const stopVideo = () => {};
+  const stopVideo = () => {
+    room.localParticipant.videoTracks.forEach((localVideoTrackPuliction) => {
+      localVideoTrackPuliction.track.disable();
+    });
+  };
 
   return (
     <div className="video_button_container">

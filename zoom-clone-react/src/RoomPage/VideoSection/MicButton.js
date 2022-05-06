@@ -7,15 +7,22 @@ function MicButton({ room }) {
 
   const unmute = () => {
     // turn on mic back
+    room.localParticipant.audioTracks.forEach((localAudioTrackPublication) => {
+      localAudioTrackPublication.track.enable();
+    });
   };
 
   const mute = () => {
     // mute our microphone so other users will be not able to hear us
+    room.localParticipant.audioTracks.forEach((localAudioTrackPublication) => {
+      localAudioTrackPublication.track.disable();
+    });
   };
 
   const handleMicButtonPressed = () => {
     isMicMuted ? unmute() : mute();
     setIsMicMuted(!isMicMuted);
+    console.log("Mic mute:", isMicMuted);
   };
 
   return (

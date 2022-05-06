@@ -4,6 +4,8 @@ const Actions = {
   SET_IDENTITY: "SET_IDENTITY",
   SET_CONNECT_ONLY_WITH_AUDIO: "SET_CONNECT_ONLY_WITH_AUDIO",
   SET_TWILIO_ACCESS_TOKEN: "SET_TWILIO_ACCESS_TOKEN",
+  SET_SHOW_OVERLAY: "SET_SHOW_OVERLAY",
+  SET_PARTICIPANTS: "SET_PARTICIPANTS",
 };
 
 export const setIdentity = (identity) => {
@@ -37,7 +39,21 @@ export const setConnectOnlyWithAudio = (onlyWithAudio) => {
 export const setTwilioAccessToken = (token) => {
   return {
     type: Actions.SET_TWILIO_ACCESS_TOKEN,
-    accessToken: token,
+    token,
+  };
+};
+
+export const setShowOverlay = (showOverlay) => {
+  return {
+    type: Actions.SET_SHOW_OVERLAY,
+    showOverlay: showOverlay,
+  };
+};
+
+export const setParticipants = (participants) => {
+  return {
+    type: Actions.SET_PARTICIPANTS,
+    participants: participants,
   };
 };
 

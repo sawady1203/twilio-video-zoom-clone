@@ -17,7 +17,6 @@ function SingleParticipant({ identity, lastItem }) {
 
 function Participants(props) {
   const { participants } = props;
-  console.log("participants:", participants);
   return (
     <div className="participants_container">
       {participants.map((participant, index) => {

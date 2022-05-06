@@ -11,7 +11,6 @@ function NewMessage() {
 
   const sendMessage = () => {
     //   send message to other user
-    console.log("message:", message);
     sendMessageUsingDataChannel(message, true);
     setMessage("");
   };

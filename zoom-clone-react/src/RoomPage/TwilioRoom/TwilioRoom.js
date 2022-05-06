@@ -52,7 +52,6 @@ function TwilioRoom({ room }) {
     store.dispatch(setParticipants(participants));
   };
 
-  console.log("RemoteParticipants:", RemoteParticipants);
   return (
     <div className="room">
       <div className="participants">

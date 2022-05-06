@@ -26,8 +26,6 @@ let dataChannel = null;
 
 export const getTokenFromTwilio = async (setAccessToken, identity) => {
   const randomId = store.getState().roomId; // room名はランダムなもの
-  console.log("roomId:", randomId);
-  console.log("identity:", identity);
   const data = {
     identity: identity,
     room: randomId,
@@ -35,7 +33,6 @@ export const getTokenFromTwilio = async (setAccessToken, identity) => {
   const response = await axios.post(URL + `/token-service`, data);
 
   const response_data = response.data;
-  console.log(response_data);
   if (response_data.accessToken) {
     setAccessToken(response_data.accessToken);
   }

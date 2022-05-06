@@ -42,9 +42,6 @@ function Participant({ participant }) {
     participant.on("trackSubscribed", trackSubscribed);
     participant.on("trackUnsubscribed", trackUnsubscribed);
 
-    console.log("audioTracks: ", audioTracks);
-    console.log("vidioTracks: ", videoTracks);
-
     return () => {
       setVideoTracks([]);
       setAudioTracks([]);

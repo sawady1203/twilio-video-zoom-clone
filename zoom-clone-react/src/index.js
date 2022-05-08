@@ -6,13 +6,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
+// MSAL imports
+import { PublicClientApplication } from "@azure/msal-browser";
+import { msalConfig } from "./authConfig";
+
 const container = document.getElementById("root");
 const root = createRoot(container);
+const msalInstance = new PublicClientApplication(msalConfig);
 
 root.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <App />
+    <App pca={msalInstance} />
   </Provider>
   // </React.StrictMode>
 );

@@ -58,3 +58,35 @@
 .create_room_button:hover {
   background-color: #e5e5e5;
 }
+
+.logout_button {
+  margin-top: 15px;
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  color: black;
+  font-size: 13px;
+  width: 180px;
+  height: 30px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.logout_button:hover {
+  background-color: #e5e5e5;
+}
+
+.signin_button {
+  margin-top: 15px;
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  color: black;
+  font-size: 13px;
+  width: 180px;
+  height: 30px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.signin_button:hover {
+  background-color: #e5e5e5;
+}

@@ -5,15 +5,21 @@ import JoinRoomPage from "./JoinRoomPage/JoinRoomPage";
 import RoomPage from "./RoomPage/RoomPage";
 import IntroductionPage from "./IntroductionPage/IntroductionPage";
 
-function App() {
+import { MsalProvider } from "@azure/msal-react";
+
+function App({ pca }) {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route index path="/" element={<IntroductionPage />} />
-        <Route path="join-room" element={<JoinRoomPage />} />
-        <Route path="room" element={<RoomPage />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <MsalProvider instance={pca}>
+        <BrowserRouter>
+          <Routes>
+            <Route index path="/" element={<IntroductionPage />} />
+            <Route path="join-room" element={<JoinRoomPage />} />
+            <Route path="room" element={<RoomPage />} />
+          </Routes>
+        </BrowserRouter>
+      </MsalProvider>
+    </>
   );
 }
 

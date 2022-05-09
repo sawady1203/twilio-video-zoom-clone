@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "build:twilio": "react-scripts build && mv build/* ../zoom-clone/assets || move ../zoom-clone/assets",
     "test": "react-scripts test",

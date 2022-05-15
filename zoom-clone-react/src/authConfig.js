@@ -4,7 +4,7 @@
 export const msalConfig = {
   auth: {
     clientId: process.env.REACT_APP_AZURE_AD_B2C_CLIENT_ID,
-    authority: `https://login.sawady.dev/${process.env.REACT_APP_AZURE_AD_B2C_TENANT_ID}/b2c_1_zoom-clone-signin`,
+    authority: `https://login.sawady.dev/${process.env.REACT_APP_AZURE_AD_B2C_TENANT_ID}/b2c_1_zoom-clone-signup-signin`,
     knownAuthorities: ["login.sawady.dev", "localhost:3000"],
     redirectUri: "https://zoom.sawady.dev",
     postLogoutRedirectUri: "https://zoom.sawady.dev",

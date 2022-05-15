@@ -25,6 +25,7 @@
 .connecting_buttons_container {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .join_room_button {
@@ -37,6 +38,7 @@
   height: 30px;
   border-radius: 8px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .join_room_button:hover {
@@ -53,6 +55,7 @@
   height: 30px;
   border-radius: 8px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .create_room_button:hover {
@@ -69,6 +72,7 @@
   height: 30px;
   border-radius: 8px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .logout_button:hover {
@@ -85,6 +89,7 @@
   height: 30px;
   border-radius: 8px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .signin_button:hover {
